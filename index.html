@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saadvik Kotagiri | Cybersecurity, IAM & Cloud</title>
+<meta name="description" content="Cybersecurity student at the University of Cincinnati focused on identity and access management, cloud security, and infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef2f5;--surface:#fff;--ink:#14212b;--muted:#556674;--line:#d3dce3;--accent:#5b3fe0;--accent-ink:#fff;--code-bg:#14212b;--code-ink:#dbe7ee;--code-key:#7fc4dc;--code-str:#f0b56b;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a22;--surface:#16242e;--ink:#e6eef3;--muted:#9fb1bd;--line:#263844;--accent:#a99bff;--accent-ink:#0f1a22;--code-bg:#0a1319;--code-ink:#dbe7ee;--code-key:#7fc4dc;--code-str:#f0b56b}}
+:root[data-theme="dark"]{--bg:#0f1a22;--surface:#16242e;--ink:#e6eef3;--muted:#9fb1bd;--line:#263844;--accent:#a99bff;--accent-ink:#0f1a22;--code-bg:#0a1319;--code-ink:#dbe7ee;--code-key:#7fc4dc;--code-str:#f0b56b}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.brand{font:700 18px "Bricolage Grotesque",sans-serif;text-decoration:none}
+nav{display:flex;gap:22px;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.hero{padding:72px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+h1{font-size:clamp(44px,7vw,84px);font-weight:800;letter-spacing:-.03em}
+.role{font-size:20px;color:var(--muted);margin:20px 0 12px;max-width:34ch}
+.pitch{max-width:52ch;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;border:1.5px solid var(--ink);text-decoration:none;font-weight:500;font-size:16px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{transform:translateY(-1px)}
+.policy{background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:22px 24px;font:400 14.5px/1.75 "IBM Plex Mono",ui-monospace,Consolas,monospace;overflow-x:auto;box-shadow:0 1px 0 var(--line)}
+.policy .k{color:var(--code-key)}.policy .s{color:var(--code-str)}
+.policy .bar{display:block;font-size:12.5px;color:#8ea3b0;margin-bottom:10px}
+.policy .cursor{display:inline-block;width:8px;height:1.1em;background:var(--code-str);vertical-align:text-bottom;animation:blink 1.1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.policy .cursor{animation:none}html{scroll-behavior:auto}.btn:hover{transform:none}}
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4vw,38px);font-weight:700;margin-bottom:32px;letter-spacing:-.02em}
+.job{display:grid;grid-template-columns:200px 1fr;gap:12px 32px;padding:24px 0;border-bottom:1px solid var(--line)}
+.job:last-child{border-bottom:0}
+.when{color:var(--muted);font-size:15px}
+.job h3{font-size:22px;margin-bottom:2px}
+.org{color:var(--accent);font-weight:500;margin:0 0 10px}
+ul{margin:0;padding-left:20px}
+li{margin:6px 0;max-width:68ch}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px}
+.card h3{font-size:22px;margin-bottom:6px}
+.stack{color:var(--muted);font-size:14.5px;margin:0 0 14px;font-family:"IBM Plex Mono",monospace}
+.contact p{max-width:52ch;margin:0 0 24px}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:820px){
+  .hero .wrap{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:4px}
+  .grid{grid-template-columns:1fr}
+  nav{gap:14px;font-size:14px}
+}
+.filterbar{border-bottom:1px solid var(--line);padding:14px 0;background:var(--surface)}
+.filterbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.filterbar .lbl{color:var(--muted);font-size:15px;margin-right:4px}
+.chip{font:inherit;font-size:15px;cursor:pointer;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:5px 14px}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+#clear{font:inherit;font-size:15px;cursor:pointer;background:none;border:0;color:var(--accent);text-decoration:underline}
+.act{font:inherit;cursor:pointer;background:none;border:0;color:var(--code-str);padding:0;text-decoration:underline dotted;text-underline-offset:4px}
+.act:hover{color:#fff}
+.job,.card{transition:opacity .2s}
+.dim{opacity:.28}
+.job .more{display:none}.job.open .more{display:list-item}
+.toggle{font:inherit;font-weight:500;font-size:15px;cursor:pointer;margin-top:10px;background:none;border:0;color:var(--accent);padding:0}
+.badge{display:inline-block;margin:0 0 12px;padding:3px 10px;border-radius:6px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);font-size:14px;font-weight:500}
+.fun{font:inherit;text-align:left;cursor:pointer;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:22px;width:100%}
+.fun .ttl{display:block;font:700 22px "Bricolage Grotesque",sans-serif}
+.fun .body{display:none;margin-top:10px}
+.fun.open .body{display:block}
+.fun .hint{display:block;color:var(--muted);font-size:14px;margin-top:6px}
+.fun.open .hint{display:none}
+.tbtn{background:none;border:1.5px solid var(--line);color:var(--ink);border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer}
+@media (max-width:560px){.brand{display:none}header .wrap{justify-content:space-between}}
+
+:root{--p1:#ff5d73;--p2:#ffb84d;--p3:#22c9a6;--p4:#7c5cff}
+:root[data-palette="ocean"]{--p1:#2ab7ff;--p2:#22c9a6;--p3:#5b6cff;--p4:#a06bff}
+:root[data-palette="sunset"]{--p1:#ff6b6b;--p2:#ff9f43;--p3:#feca57;--p4:#ff5fa2}
+:root[data-palette="grape"]{--p1:#a06bff;--p2:#ff5fa2;--p3:#5b6cff;--p4:#2ad0d0}
+body{background:radial-gradient(60vw 50vh at 0% 0%,color-mix(in srgb,var(--p1) 20%,transparent),transparent),radial-gradient(55vw 55vh at 100% 20%,color-mix(in srgb,var(--p4) 18%,transparent),transparent),radial-gradient(60vw 50vh at 40% 100%,color-mix(in srgb,var(--p3) 18%,transparent),transparent),var(--bg);background-attachment:fixed}
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.glow{position:fixed;left:0;top:0;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,color-mix(in srgb,var(--p2) 34%,transparent),transparent 65%)}
+.job{border-left:5px solid var(--c,var(--p1));padding-left:20px}
+.card,.fun{position:relative;overflow:hidden;transition:opacity .2s,transform .15s}
+.card::before,.fun::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--c,var(--p1))}
+.chip{border-color:color-mix(in srgb,var(--c,var(--line)) 75%,transparent)}
+.chip:hover{background:color-mix(in srgb,var(--c,var(--accent)) 20%,transparent)}
+@media (pointer:coarse),(prefers-reduced-motion:reduce){.glow{display:none}}
+
+.hintline{color:var(--muted);margin:-16px 0 16px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.leg{font:inherit;font-size:14px;cursor:pointer;background:transparent;color:var(--ink);border:1.5px solid var(--c);border-radius:6px;padding:3px 10px}
+.leg[aria-pressed="true"]{background:var(--c);color:#14212b}
+.cloud{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:8px 0}
+.bub{font:500 var(--fs,17px)/1 "IBM Plex Sans",system-ui,sans-serif;padding:.55em 1.1em;border-radius:999px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 22%,var(--surface));color:var(--ink);cursor:pointer;animation:bob 4.5s ease-in-out infinite;animation-delay:var(--d,0s);transition:scale .2s,background .2s,opacity .2s}
+.bub:hover{scale:1.1}
+.bub[aria-pressed="true"]{scale:1.22;background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.bub.faded{opacity:.25}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.skpanel{margin-top:24px;min-height:110px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--c,var(--p1));border-radius:10px;padding:20px 24px}
+.skpanel h3{font-size:24px;margin-bottom:6px}
+.skpanel p{margin:0;max-width:64ch}
+.also{color:var(--muted);margin-top:24px;max-width:80ch}
+@media (prefers-reduced-motion:reduce){.bub{animation:none}}
+
+.edu-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.edu-card{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:30px 28px 26px}
+.edu-card::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--p4)}
+.edu-card.gpa::before{background:var(--p1)}
+.edu-card h3{font-size:clamp(26px,4vw,34px)}
+.deg{font-size:19px;margin:6px 0 2px}
+.dates{color:var(--muted);margin:0 0 24px}
+.track{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;border-radius:7px;background:var(--p3);transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.in .fill{width:var(--pct,0%)}
+.pctlbl{margin:10px 0 0;color:var(--muted);font-size:15px}
+.gpa{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ringwrap{position:relative;width:150px;height:150px}
+.ring{width:150px;height:150px}
+.ring .bgc{stroke:var(--line)}
+.ring .fg{stroke:var(--p1);stroke-dasharray:326.7;stroke-dashoffset:326.7;transition:stroke-dashoffset 1.8s cubic-bezier(.2,.8,.2,1)}
+.in .ring .fg{stroke-dashoffset:var(--off,326.7)}
+.gpanum{position:absolute;inset:0;display:grid;place-items:center;font:800 38px "Bricolage Grotesque",sans-serif}
+.courses{display:flex;flex-wrap:wrap;gap:10px}
+.course{font:inherit;font-size:16px;cursor:pointer;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 20%,var(--surface));color:var(--ink);border-radius:999px;padding:7px 16px;transition:scale .2s}
+.course:hover{scale:1.06}
+@media (max-width:820px){.edu-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.fill,.ring .fg{transition:none}}
+.edu-card.single{max-width:640px}
+.edu-card.single .dates{margin-bottom:20px}
+.stats{display:flex;gap:44px;margin:0}
+.stats dt{color:var(--muted);font-size:14px}
+.stats dd{margin:0;font:700 30px "Bricolage Grotesque",sans-serif}
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">Saadvik Kotagiri</a>
+    <nav aria-label="Primary">
+      <a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    </nav>
+    <button id="tbtn" class="tbtn" aria-label="Switch between light and dark theme">◐</button>
+  </div>
+</header>
+<main id="top">
+  <div class="hero"><canvas id="net" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div>
+        <h1>Saadvik Kotagiri</h1>
+        <p class="role">Cybersecurity student at the University of Cincinnati, graduating May 2027.</p>
+        <p class="pitch">I work on identity and access management, cloud security, and infrastructure. At Humana and 84.51° I've automated security triage, moved secrets into Azure Key Vault, and managed Azure access for 200+ people.</p>
+        <div class="btns">
+          <a class="btn primary" href="#experience">See my experience</a>
+          <a class="btn" href="mailto:kotagisk@mail.uc.edu">Email me</a>
+          <button class="btn" id="shuffle" type="button" style="background:none;color:inherit;font:inherit;cursor:pointer">Shuffle colors</button>
+        </div>
+      </div>
+      <div class="policy" role="group" aria-label="Access policy. Click an action to filter my work by that skill.">
+        <span class="bar">policy.json · click an action to filter my work</span>
+{<br>
+&nbsp;&nbsp;<span class="k">"Principal"</span>: <span class="s">"saadvik.kotagiri"</span>,<br>
+&nbsp;&nbsp;<span class="k">"Effect"</span>: <span class="s">"Allow"</span>,<br>
+&nbsp;&nbsp;<span class="k">"Action"</span>: [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="act" data-f="iam">"iam:ManageAccess"</button>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="act" data-f="azure">"cloud:SecureResources"</button>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="act" data-f="automation">"security:AutomateTriage"</button><br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;<span class="k">"Condition"</span>: {<span class="k">"AvailableFrom"</span>: <span class="s">"2027-05"</span>}<span class="cursor"></span><br>
+}
+      </div>
+    </div>
+  </div>
+
+  <div class="filterbar"><div class="wrap"><span class="lbl">Filter my work by skill:</span><button class="chip" data-f="iam" aria-pressed="false">IAM</button><button class="chip" data-f="azure" aria-pressed="false">Azure</button><button class="chip" data-f="automation" aria-pressed="false">Automation</button><button class="chip" data-f="networking" aria-pressed="false">Networking</button><button class="chip" data-f="security" aria-pressed="false">Security tooling</button><button class="chip" data-f="ai" aria-pressed="false">AI / RAG</button><button class="chip" data-f="frontend" aria-pressed="false">Frontend</button><button class="chip" data-f="python" aria-pressed="false">Python</button><button id="clear" hidden>Clear</button></div></div>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <div class="job" data-tags="iam azure automation security">
+        <div class="when">May 2026 – Aug 2026<br>Louisville, KY</div>
+        <div>
+          <h3>Cybersecurity Intern</h3>
+          <p class="org">Humana, Enterprise Information Protection Team</p>
+          <ul>
+            <li>Automated incident intake with Power Automate, cutting manual triage time by 80% through auto-generated ServiceNow tickets and management alerts.</li>
+            <li class="more">Integrated Azure Key Vault so workflows retrieve secrets securely, reducing manual credential handling by 70% and strengthening IAM compliance.</li>
+            <li class="more">Built HTTP-triggered workflows that connect security systems and speed up response to identity and access alerts.</li>
+          </ul>
+          <button class="toggle" aria-expanded="false">Show details</button>
+        </div>
+      </div>
+      <div class="job" data-tags="azure iam networking">
+        <div class="when">Jan 2026 – May 2026<br>Chicago, IL</div>
+        <div>
+          <h3>Cloud and Infrastructure Intern</h3>
+          <p class="org">84.51°</p>
+          <ul>
+            <li>Administered Azure resource groups and access for 200+ members, adding and changing group memberships to keep cloud environments secure and organized.</li>
+            <li class="more">Resolved networking issues across VPNs, routers, and configurations for end users and internal teams.</li>
+            <li class="more">Used AI-driven ticket categorization and routing in ServiceNow, and maintained self-service knowledge base articles.</li>
+            <li class="more">Worked with infrastructure and networking teams to escalate and fix complex connectivity and access requests.</li>
+          </ul>
+          <button class="toggle" aria-expanded="false">Show details</button>
+        </div>
+      </div>
+      <div class="job" data-tags="frontend">
+        <div class="when">May 2025 – Aug 2025<br>Humana</div>
+        <div>
+          <h3>IT/SWE Intern</h3>
+          <p class="org">Humana, Data and Digital Team</p>
+          <ul>
+            <li>Contributed to Humana's Digital Health Platform, which supports patient engagement and care coordination for 1,000+ users.</li>
+            <li class="more">Built responsive, modular frontend components in Vue.js.</li>
+            <li class="more">Integrated RESTful APIs and Java backend services to move data between services and the frontend.</li>
+          </ul>
+          <button class="toggle" aria-expanded="false">Show details</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card" data-tags="ai python frontend">
+          <h3>Polaris Agentic RAG Engine</h3>
+          <p class="badge">1st place, Humana Intern Hackathon (160+ competitors)</p>
+          <p class="stack">React, FastAPI, BigQuery, Google ADK, Gemini · Jul – Aug 2026</p>
+          <ul>
+            <li>Designed an evidence-grounded RAG pipeline that replaces manual CMS STARS report pulling.</li>
+            <li>Orchestrated 8 specialized Gemini agents with Google ADK to route natural-language queries and return audited answers in under 5 seconds.</li>
+            <li>Built a FastAPI and BigQuery backend with a React frontend showing measure momentum, closure rates, and claim-level audit trails.</li>
+          </ul>
+          <p style="margin:14px 0 0"><a href="https://www.youtube.com/watch?v=va5OyPa6K6k" rel="noopener">Watch the demo</a></p>
+        </article>
+        <article class="card" data-tags="python azure automation ai">
+          <h3>Digital Faxing System</h3>
+          <p class="badge">Humana Intern Hackathon · 2025</p>
+          <p class="stack">Python, Azure OCR, AWS, DynamoDB, Flask, Ollama API · Full stack</p>
+          <ul>
+            <li>Built a fully automated digital faxing system that parses documents with Azure OCR and stores them in AWS.</li>
+            <li>Routes each document to the right provider, increasing productivity by 92%.</li>
+          </ul>
+          <p style="margin:14px 0 0"><a href="https://drive.google.com/file/d/1I1hcjyREwrIu7TqNmy8b3u9yz0WZc6yL/view" rel="noopener">Watch the demo</a></p>
+        </article>
+        <article class="card" data-tags="security python frontend automation">
+          <h3>Vulnerability Management Dashboard</h3>
+          <p class="stack">Flask, Vue, Nmap, Git · Dec 2025 – Jan 2026</p>
+          <ul>
+            <li>Built a dashboard that tracks vulnerabilities across 10+ systems so remediation can be prioritized by risk.</li>
+            <li>Automated collection, enrichment, and analysis of 50+ vulnerabilities from internal scans and public threat intelligence.</li>
+            <li>Added scheduled assessments and real-time alerts to improve visibility and response time on critical assets.</li>
+          </ul>
+        </article>
+        <article class="card" data-tags="security python frontend">
+          <h3>Detection Engineering SOC Lab</h3>
+          <p class="badge">In progress</p>
+          <p class="stack">Sysmon, Sigma, MITRE ATT&amp;CK, Atomic Red Team, FastAPI, SQLite, React</p>
+          <ul>
+            <li>Ingests Sysmon logs and detects suspicious activity with Sigma rules mapped to MITRE ATT&amp;CK.</li>
+            <li>Simulates attacks with Atomic Red Team to test each detection.</li>
+            <li>Exposes results through a FastAPI and SQLite backend with a React frontend. The Docker/ELK pipeline is still being built.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>UC Student Support App</h3>
+          <p class="badge">In progress · Senior capstone</p>
+          <ul>
+            <li>Building a fully working support application for University of Cincinnati students, not a mockup.</li>
+            <li>Sign-up is limited to @mail.uc.edu and @uc.edu email addresses.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="hintline">Tap a bubble to see where I've used it. Bigger bubbles mean more of my work.</p>
+      <div class="legend"><button class="leg" data-cat="cloud" aria-pressed="false" style="--c:var(--p1)">Cloud, identity and networking</button><button class="leg" data-cat="lang" aria-pressed="false" style="--c:var(--p4)">Languages</button><button class="leg" data-cat="fw" aria-pressed="false" style="--c:var(--p3)">Frameworks</button><button class="leg" data-cat="tool" aria-pressed="false" style="--c:var(--p2)">Tools</button></div>
+      <div class="cloud"><button class="bub" aria-pressed="false" data-cat="cloud" data-tag="azure" data-text="Managed resource groups and access for 200+ members at 84.51°, used Key Vault for secure secrets at Humana, and used Azure OCR in the Digital Faxing System." style="--c:var(--p1);--fs:22px;--d:-0.0s">Azure</button><button class="bub" aria-pressed="false" data-cat="cloud" data-tag="iam" data-text="Automated identity and access alerts and secret handling on Humana&#x27;s Enterprise Information Protection team, and managed group access at 84.51°." style="--c:var(--p1);--fs:22px;--d:-0.7s">IAM</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="python" data-text="Backends for Polaris, the Vulnerability Management Dashboard, the Digital Faxing System, and the SOC lab." style="--c:var(--p4);--fs:22px;--d:-1.4s">Python</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="automation" data-text="Cut manual triage time by 80% at Humana with auto-generated ServiceNow tickets and management alerts." style="--c:var(--p2);--fs:18px;--d:-2.1s">Power Automate</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="automation" data-text="Ticket automation at Humana, plus AI-driven categorization and routing and knowledge base articles at 84.51°." style="--c:var(--p2);--fs:18px;--d:-2.8s">ServiceNow</button><button class="bub" aria-pressed="false" data-cat="cloud" data-tag="networking" data-text="Resolved VPN, router, and configuration issues at 84.51°, backed by coursework in Network Security, Infrastructure Management, and Monitoring." style="--c:var(--p1);--fs:18px;--d:-3.5s">Networking</button><button class="bub" aria-pressed="false" data-cat="cloud" data-tag="" data-text="Stores documents in the Digital Faxing System, with DynamoDB for the data." style="--c:var(--p1);--fs:18px;--d:-0.2s">AWS</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="" data-text="Built REST APIs and backend services for Humana&#x27;s Digital Health Platform." style="--c:var(--p4);--fs:18px;--d:-0.9s">Java</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="frontend" data-text="Built modular frontend components for the Digital Health Platform at Humana and for the Vulnerability Management Dashboard." style="--c:var(--p3);--fs:18px;--d:-1.6s">Vue.js</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="frontend" data-text="Frontends for Polaris and the SOC lab." style="--c:var(--p3);--fs:18px;--d:-2.3s">React</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="python" data-text="Backends for Polaris and the SOC lab." style="--c:var(--p3);--fs:18px;--d:-3.0s">FastAPI</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="python" data-text="Powers the Vulnerability Management Dashboard and the Digital Faxing System." style="--c:var(--p3);--fs:15px;--d:-3.7s">Flask</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="" data-text="BigQuery powers Polaris, and databases were a core part of my coursework." style="--c:var(--p4);--fs:18px;--d:-0.4s">SQL</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="ai" data-text="Orchestrated 8 specialized Gemini agents in Polaris." style="--c:var(--p3);--fs:18px;--d:-1.1s">Google ADK</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="security" data-text="Feeds scan data into the Vulnerability Management Dashboard." style="--c:var(--p2);--fs:15px;--d:-1.8s">Nmap</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="security" data-text="Detection rules in the SOC lab are written in Sigma, mapped to ATT&amp;CK techniques, and tested with Atomic Red Team." style="--c:var(--p2);--fs:18px;--d:-2.5s">MITRE ATT&amp;CK</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="iam" data-text="Scripting for IAM work at Humana, including Key Vault secret retrieval." style="--c:var(--p4);--fs:15px;--d:-3.2s">PowerShell</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Part of my network analysis toolkit, alongside Network Forensics coursework." style="--c:var(--p2);--fs:15px;--d:-3.9s">Wireshark</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Part of my web testing toolkit, alongside Penetration Testing coursework." style="--c:var(--p2);--fs:15px;--d:-0.6s">Burp Suite</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="frontend" data-text="The language underneath my Vue.js and React frontend work." style="--c:var(--p4);--fs:15px;--d:-1.3s">JavaScript</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="frontend" data-text="Typed JavaScript for larger frontend code." style="--c:var(--p4);--fs:15px;--d:-2.0s">TypeScript</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="frontend" data-text="The foundation for every interface I build, including this site." style="--c:var(--p4);--fs:15px;--d:-2.7s">HTML/CSS</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="" data-text="Shell scripting, alongside PowerShell." style="--c:var(--p4);--fs:15px;--d:-3.4s">Bash</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="" data-text="Part of my programming foundation from coursework." style="--c:var(--p4);--fs:15px;--d:-0.1s">C++</button><button class="bub" aria-pressed="false" data-cat="lang" data-tag="" data-text="Part of my programming foundation from coursework." style="--c:var(--p4);--fs:15px;--d:-0.8s">C</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="frontend" data-text="JavaScript runtime that supports my frontend tooling and web work." style="--c:var(--p3);--fs:15px;--d:-1.5s">Node.js</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="" data-text="Java framework for building backend services, next to my Java API work." style="--c:var(--p3);--fs:15px;--d:-2.2s">SpringBoot</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="python" data-text="Python library for numerical work." style="--c:var(--p3);--fs:15px;--d:-2.9s">NumPy</button><button class="bub" aria-pressed="false" data-cat="fw" data-tag="python" data-text="Python library for plotting and charts." style="--c:var(--p3);--fs:15px;--d:-3.6s">Matplotlib</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Version control across my projects." style="--c:var(--p2);--fs:15px;--d:-0.3s">Git</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Where my project code lives: github.com/saadvikk." style="--c:var(--p2);--fs:15px;--d:-1.0s">GitHub</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Microsoft&#x27;s platform for planning work and shipping code." style="--c:var(--p2);--fs:15px;--d:-1.7s">Azure DevOps</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="For testing and exploring REST APIs." style="--c:var(--p2);--fs:15px;--d:-2.4s">Postman</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="automation" data-text="Microsoft&#x27;s low-code app builder, alongside Power Automate." style="--c:var(--p2);--fs:15px;--d:-3.1s">PowerApps</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Endpoint management tool on my resume." style="--c:var(--p2);--fs:15px;--d:-3.8s">Desktop Central</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="A relational database I&#x27;ve worked with." style="--c:var(--p2);--fs:15px;--d:-0.5s">PostgreSQL</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Microsoft&#x27;s relational database, part of my database toolkit." style="--c:var(--p2);--fs:15px;--d:-1.2s">SQL Server</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="security" data-text="Windows disk encryption, part of my security toolkit." style="--c:var(--p2);--fs:15px;--d:-1.9s">BitLocker</button><button class="bub" aria-pressed="false" data-cat="tool" data-tag="" data-text="Design and prototyping tool for interface mockups." style="--c:var(--p2);--fs:15px;--d:-2.6s">Figma</button></div>
+      <div id="skpanel" class="skpanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="education" class="edu">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="edu-card single">
+        <h3>University of Cincinnati</h3>
+        <p class="deg">B.S. in Cybersecurity</p>
+        <p class="dates">Aug 2023 – May 2027 · Cincinnati, OH</p>
+        <dl class="stats"><div><dt>GPA</dt><dd>3.95</dd></div><div><dt>Graduating</dt><dd>May 2027</dd></div></dl>
+      </div>
+      <p class="hintline" style="margin:28px 0 12px">Coursework. Tap a course to see related work.</p>
+      <div class="courses"><button class="course" data-f="security">Network Security</button><button class="course" data-f="networking">Network Infrastructure Management</button><button class="course" data-f="security">Penetration Testing</button><button class="course" data-f="azure">Systems Administration</button><button class="course" data-f="python">Database Management</button><button class="course" data-f="networking">Network Monitoring</button><button class="course" data-f="security">Network Forensics</button><button class="course" data-f="python">Computer Programming</button></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Get in touch</h2>
+      <p>I'm graduating in May 2027 and looking for full-time cybersecurity roles, with a focus on IAM, cloud security, and infrastructure. Email is the fastest way to reach me.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:kotagisk@mail.uc.edu">kotagisk@mail.uc.edu</a>
+        <button class="btn" id="copy" type="button" style="background:none;color:inherit;font:inherit;cursor:pointer">Copy email</button>
+        <a class="btn" href="https://linkedin.com/in/saadvik" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/saadvikk" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">© 2026 Saadvik Kotagiri</div></footer>
+<script>
+const tags=new Set(),items=document.querySelectorAll('[data-tags]'),clr=document.getElementById('clear');
+function apply(){items.forEach(e=>e.classList.toggle('dim',tags.size>0&&!e.dataset.tags.split(' ').some(x=>tags.has(x))));
+document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',tags.has(c.dataset.f)));clr.hidden=!tags.size}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{tags.has(c.dataset.f)?tags.delete(c.dataset.f):tags.add(c.dataset.f);apply()});
+clr.onclick=()=>{tags.clear();apply()};
+document.querySelectorAll('.act').forEach(b=>b.onclick=()=>{tags.clear();tags.add(b.dataset.f);apply();document.getElementById('experience').scrollIntoView()});
+document.querySelectorAll('.toggle').forEach(b=>b.onclick=()=>{const o=b.closest('.job').classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'Show less':'Show details'});
+document.querySelectorAll('.fun').forEach(b=>b.onclick=()=>b.setAttribute('aria-expanded',b.classList.toggle('open')));
+const root=document.documentElement;
+document.getElementById('tbtn').onclick=()=>{const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=cur==='dark'?'light':'dark'};
+document.getElementById('copy').onclick=async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText('kotagisk@mail.uc.edu');b.textContent='Copied'}catch(x){b.textContent='kotagisk@mail.uc.edu'}setTimeout(()=>b.textContent='Copy email',2500)};
+
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.querySelectorAll('[data-tags],.fun').forEach((e,i)=>e.style.setProperty('--c','var(--p'+(i%4+1)+')'));
+document.querySelectorAll('.chip').forEach((e,i)=>e.style.setProperty('--c','var(--p'+(i%4+1)+')'));
+const P=['aurora','ocean','sunset','grape'];let pi=0;
+document.getElementById('shuffle').onclick=()=>{pi=(pi+1)%4;root.dataset.palette=P[pi];pal();if(RM)frame()};
+const glow=document.querySelector('.glow');
+let gx=300,gy=200,tx=300,ty=200;
+addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY});
+if(!RM)(function g(){gx+=(tx-gx)*.12;gy+=(ty-gy)*.12;glow.style.transform='translate('+(gx-210)+'px,'+(gy-210)+'px)';requestAnimationFrame(g)})();
+if(!RM)document.querySelectorAll('.card,.fun').forEach(c=>{c.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(800px) rotateX('+(-y*7)+'deg) rotateY('+(x*9)+'deg)'});c.addEventListener('pointerleave',()=>c.style.transform='')});
+const cv=document.getElementById('net'),ctx=cv.getContext('2d'),hero=cv.parentElement;
+let W=0,H=0,nodes=[],mx=-999,my=-999,cols=[];
+function pal(){const cs=getComputedStyle(root);cols=[1,2,3,4].map(i=>cs.getPropertyValue('--p'+i).trim())}
+function add(x,y,v){nodes.push({x,y,vx:(Math.random()-.5)*v,vy:(Math.random()-.5)*v,c:Math.floor(Math.random()*4)})}
+function size(){const d=devicePixelRatio||1;W=hero.clientWidth;H=hero.clientHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);nodes=[];const n=Math.min(80,Math.round(W*H/13000));for(let i=0;i<n;i++)add(Math.random()*W,Math.random()*H,.5);if(RM)frame()}
+function frame(){ctx.clearRect(0,0,W,H);
+for(const n of nodes){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;if(Math.abs(n.vx)>.5)n.vx*=.97;if(Math.abs(n.vy)>.5)n.vy*=.97;const dx=mx-n.x,dy=my-n.y;if(Math.hypot(dx,dy)<160){n.x+=dx*.012;n.y+=dy*.012}}
+for(let i=0;i<nodes.length;i++){const a=nodes[i];
+for(let j=i+1;j<nodes.length;j++){const b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){ctx.strokeStyle=cols[a.c];ctx.globalAlpha=(1-d/120)*.5;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}
+const dm=Math.hypot(mx-a.x,my-a.y);if(dm<160){ctx.strokeStyle=cols[a.c];ctx.globalAlpha=(1-dm/160)*.85;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(mx,my);ctx.stroke()}
+ctx.globalAlpha=1;ctx.fillStyle=cols[a.c];ctx.beginPath();ctx.arc(a.x,a.y,2.8,0,7);ctx.fill()}
+if(!RM)requestAnimationFrame(frame)}
+hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
+hero.addEventListener('pointerleave',()=>{mx=my=-999});
+hero.addEventListener('click',e=>{if(e.target.closest('a,button,.policy'))return;const r=hero.getBoundingClientRect();for(let k=0;k<7;k++)add(e.clientX-r.left,e.clientY-r.top,4);if(nodes.length>150)nodes.splice(0,nodes.length-150);if(RM)frame()});
+pal();size();new ResizeObserver(size).observe(hero);if(!RM)frame();
+
+const skp=document.getElementById('skpanel');
+function skReset(){skp.style.removeProperty('--c');skp.innerHTML='<p>Select a bubble to see the work behind it.</p>'}
+skReset();
+document.querySelectorAll('.bub').forEach(b=>b.onclick=()=>{const was=b.getAttribute('aria-pressed')==='true';
+document.querySelectorAll('.bub').forEach(x=>x.setAttribute('aria-pressed','false'));
+if(was){skReset();return}
+b.setAttribute('aria-pressed','true');skp.style.setProperty('--c',b.style.getPropertyValue('--c'));
+skp.innerHTML='<h3></h3><p></p>';skp.firstChild.textContent=b.textContent;skp.lastChild.textContent=b.dataset.text;
+if(b.dataset.tag){const r=document.createElement('button');r.className='toggle';r.textContent='Show related work';r.onclick=()=>{tags.clear();tags.add(b.dataset.tag);apply();document.getElementById('experience').scrollIntoView()};skp.appendChild(r)}});
+let legCat=null;
+document.querySelectorAll('.leg').forEach(l=>l.onclick=()=>{legCat=legCat===l.dataset.cat?null:l.dataset.cat;
+document.querySelectorAll('.leg').forEach(x=>x.setAttribute('aria-pressed',x.dataset.cat===legCat));
+document.querySelectorAll('.bub').forEach(b=>b.classList.toggle('faded',!!legCat&&b.dataset.cat!==legCat))});
+
+document.querySelectorAll('.course').forEach((c,i)=>{c.style.setProperty('--c','var(--p'+(i%4+1)+')');c.onclick=()=>{tags.clear();tags.add(c.dataset.f);apply();document.getElementById('experience').scrollIntoView()}});
+</script>
+</body>
+</html>
